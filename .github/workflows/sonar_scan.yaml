@@ -1,4 +1,4 @@
-name: SonarQube Scan (Self-Hosted)
+name: SonarQube Test
 
 on:
   push:
@@ -12,13 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python # or your build environment
-        uses: actions/setup-python@v4 # or other setup action
-        with:
-          python-version: '3.13' # or your version
-
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+          
+            -Dsonar.projectKey= sqa_8b72cc39221e4e921c35c7f133940fd7fdc6c825
+            -Dsonar.sources=.
