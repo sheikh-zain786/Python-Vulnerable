@@ -1,34 +1,23 @@
-name: Python CI/CD with SonarQube
+name: Test SonarQube Token
 
 on:
   push:
     branches:
-      - main # Or your main branch
-  pull_request:
-    branches:
       - main
 
 jobs:
-  build_and_scan:
+  sonar_scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9' # Or your desired Python versiom
       - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-github-action@master #If you are using sonarcloud, otherwise use sonarsource/sonarqube-scan-action@master
+        uses: sonarsource/sonarqube-scan-action@v5.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #Uncomment and set this if you are using a self-hosted sonarqube server.
         with:
           args: >
-            -Dsonar.organization=your-sonarcloud-organization #Replace with your organization
-            -Dsonar.projectKey=your-project-key #Replace with your project key
+            -Dsonar.organization=your-sonarcloud-organization #Replace
+            -Dsonar.projectKey=your-project-key #Replace
             -Dsonar.sources=.
-            -Dsonar.python.coverage.reportPaths=coverage.xml #if you have coverage reports
