@@ -19,11 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9' # Or your desired Python version
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt # If you have a requirements.txt file
-
+          python-version: '3.9' # Or your desired Python versiom
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master #If you are using sonarcloud, otherwise use sonarsource/sonarqube-scan-action@master
         env:
