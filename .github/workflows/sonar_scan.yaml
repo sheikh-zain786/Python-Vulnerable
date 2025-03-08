@@ -15,25 +15,10 @@ jobs:
       - name: Set up Python # or your build environment
         uses: actions/setup-python@v4 # or other setup action
         with:
-          python-version: '3.9' # or your version
-
-      - name: Install dependencies #if needed.
-        run: pip install -r requirements.txt
+          python-version: '3.13' # or your version
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
-            -Dsonar.organization=your-sonar-organization # Replace
-            -Dsonar.projectKey=your-sonar-project-key # Replace
-            -Dsonar.sources=.
-            -Dsonar.python.coverage.reportPaths=coverage.xml #if you have coverage reports
-
-      - name: Cache SonarScanner CLI #recommended
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/work/_temp/sonar-scanner-cli-7.0.2.4839-Linux-X64
-          key: sonar-scanner-cli-7.0.2.4839-Linux-X64
