@@ -19,4 +19,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_PROJECT_KEY: your-project-key  # Add this line, replace with your key
+          SONAR_PROJECT_KEY: TIWAP  # Add this line, replace with your key
